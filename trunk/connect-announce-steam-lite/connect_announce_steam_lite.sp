@@ -31,6 +31,7 @@
  *
  * 1.1 - clean up tag mismatch... OnClientPostAdminCheck is not supposed to have a
  *       return value
+ * 1.2 - update author and url settings in myinfo
  */
 
 #pragma semicolon 1
@@ -39,17 +40,17 @@
 #include <sdktools>
 
 #define MSGLENGTH 151
-#define VERSION "1.1"
+#define VERSION "1.2"
 
 new Handle:cvarEnable;
 
 public Plugin:myinfo =
 {
 	name = "Connect Announce Steam Lite",
-	author = "Arg!",
+	author = "[OSF]Broken Napkins",
 	description = "Displays connect messages to admins including Steam ID of joining player",
 	version = VERSION,
-	url = ""
+	url = "tf2.brokennapkins.com"
 }
 
 public OnPluginStart()
