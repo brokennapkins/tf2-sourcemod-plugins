@@ -38,7 +38,7 @@
  *
  * 2.0 - retrieve steam id in format 3, ex. "[U:1:1234567]"
  *
- * 2.0.1 - replace deprecated FCVAR_PLUGIN flag
+ * 2.1 - replace deprecated FCVAR_PLUGIN flag
  */
 
 
@@ -48,7 +48,7 @@
 #include <sdktools>
 
 #define MSGLENGTH 151
-#define PLUGIN_VERSION "2.0.1"
+#define PLUGIN_VERSION "2.1"
 
 new Handle:cvarEnable;
 

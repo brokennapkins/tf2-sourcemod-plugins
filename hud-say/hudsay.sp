@@ -22,13 +22,14 @@
 * 	1.0 - Let's have a go at it...
 *	1.1 - Add admin specific HUD
 *	1.2 - Reposition HUD to be just above cursor/crosshair
+*	1.3 - Author/url change
 * 	
 */
 
 #pragma semicolon 1
 #include <sourcemod>
 #include <sdktools>
-#define PLUGIN_VERSION "1.2"
+#define PLUGIN_VERSION "1.3"
 
 new Handle:HudMessage;
 new bool:CanHUD;
@@ -38,10 +39,10 @@ new g_Colors[13][3] = {{255,255,255},{255,0,0},{0,255,0},{0,0,255},{255,255,0},{
 
 public Plugin:myinfo = {
 	name = "HUD Say",
-	author = "brokennapkins",
+	author = "[OSF]Broken Napkins",
 	description = "Colored HUD messages to all or to admins",
 	version = PLUGIN_VERSION,
-	url = "http://www.batheinfire.com/"
+	url = "http://www.osfhome.com/"
 };
 
 
