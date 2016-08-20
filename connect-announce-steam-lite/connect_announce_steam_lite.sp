@@ -22,8 +22,10 @@
  * or <http://www.sourcemod.net/license.php>.
  *
  */
-
+ 
 /**
+ * Based off of Arg!'s version
+ *
  * Changelog
  *
  * 1.0 - initial trimmed version of connect announce. displays steam id of connecting
@@ -31,8 +33,14 @@
  *
  * 1.1 - clean up tag mismatch... OnClientPostAdminCheck is not supposed to have a
  *       return value
+ *
  * 1.2 - update author and url settings in myinfo
+ *
+ * 2.0 - retrieve steam id in format 3, ex. "[U:1:1234567]"
+ *
+ * 2.0.1 - replace deprecated FCVAR_PLUGIN flag
  */
+
 
 #pragma semicolon 1
 
@@ -40,7 +48,7 @@
 #include <sdktools>
 
 #define MSGLENGTH 151
-#define VERSION "1.2"
+#define PLUGIN_VERSION "2.0.1"
 
 new Handle:cvarEnable;
 
@@ -49,14 +57,14 @@ public Plugin:myinfo =
 	name = "Connect Announce Steam Lite",
 	author = "[OSF]Broken Napkins",
 	description = "Displays connect messages to admins including Steam ID of joining player",
-	version = VERSION,
-	url = "tf2.brokennapkins.com"
+	version = PLUGIN_VERSION,
+	url = "http://www.osfhome.com"
 }
 
 public OnPluginStart()
 {
-	cvarEnable = CreateConVar("sm_connect_announce_steam_lite_enable", "0", "Enable/Disable the plugin", FCVAR_PLUGIN, true, 0.0, true, 1.0);
-	CreateConVar("sm_connect_announce_steam_lite_version", "1.00", "Lite version of the Connect Announce plugin to show a player's Steam ID joining the server", FCVAR_REPLICATED);
+	cvarEnable = CreateConVar("sm_connect_announce_steam_lite_enable", "0", "Enable/Disable the plugin", FCVAR_NONE, true, 0.0, true, 1.0);
+	CreateConVar("sm_connect_announce_steam_lite_version", PLUGIN_VERSION, "Lite version of the Connect Announce plugin to show a player's Steam ID joining the server", FCVAR_REPLICATED);
 }
 
 public OnClientPostAdminCheck(client)
@@ -67,9 +75,9 @@ public OnClientPostAdminCheck(client)
 		decl String:name[32];
 		GetClientName(client, name, sizeof(name));
 
-		//save steam id
+		//save steam id in format 3, ex. "[U:1:8307981]"
 		decl String:auth[32];
-		GetClientAuthString(client, auth, sizeof(auth));
+		GetClientAuthId(client, AuthId_Steam3, auth, sizeof(auth));
 
 		//send message to clients
 		new iClients = GetClientCount();
